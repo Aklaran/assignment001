@@ -29,15 +29,43 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    __weak NSString *weakString = _gameTapsOfJoyModel.tapArray[_indexSelection][@"selection"];
+    _goalObject = _gameTapsOfJoyModel.tapArray[_indexSelection][@"selection"];
     NSLog(@"Index Selection ==:%i",(int)_indexSelection);
-    NSLog(@"%@",weakString);
-    NSLog(@"%@",_gameTapsOfJoyModel.tapArray[_indexSelection][weakString]);
-    CGRect frame = CGRectMake(40, 200, 280, 192);
-    UIImage *stars = [UIImage imageNamed:@"stars.jpg"];
-    UIImageView *starsView = [[UIImageView alloc]initWithFrame:frame];
-    starsView.image = stars;
-    [self.view addSubview:starsView];
+    NSLog(@"goal object ==:%@",_goalObject);
+    NSLog(@"goal number ==:%@",_gameTapsOfJoyModel.tapArray[_indexSelection][_goalObject]);
+    NSArray *localArray = @[@"stars",@"circles",@"squares",@"triangles"];
+    for (__weak NSString *weakKey in localArray) {
+        NSString *localString = [[NSString alloc]initWithFormat:@"%@.jpg", weakKey];
+        NSInteger objectCount =  [_gameTapsOfJoyModel.tapArray[_indexSelection][weakKey] integerValue];
+        for (NSInteger i=0; i<objectCount; i++) {
+            UIImage *shape = [UIImage imageNamed:localString];
+            UIImageView *shapeView;
+            CGRect imageFrame;
+            do {
+                imageFrame = CGRectMake(arc4random_uniform(self.view.bounds.size.width-75), arc4random_uniform(self.view.bounds.size.height-75), 75, 75);
+                } while ( [self doesIntersectWithFrame:imageFrame]);
+            shapeView = [[UIImageView alloc]initWithFrame:imageFrame];
+            shapeView.tag = [localArray indexOfObject:weakKey];
+            shapeView.image = shape;
+            shapeView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(poofImage:)];
+            [shapeView addGestureRecognizer:imageTap];
+            [self.view addSubview:shapeView];
+        }
+    }
+}
+
+-(BOOL)doesIntersectWithFrame:(CGRect)myFrame // = hgfhgfframe
+{
+    for (__weak UIView *weakView in self.view.subviews) {
+        if(CGRectIntersectsRect(myFrame, weakView.frame))
+        {
+            return TRUE;
+        }
+    }
+    
+    
+    return FALSE;
 }
 
 
@@ -46,12 +74,56 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[UIApplication sharedApplication] setStatusBarHidden:YES
+                                            withAnimation:UIStatusBarAnimationFade];
+//    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)poofImage:(UITapGestureRecognizer *)sender
+{
+    
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        NSString *shapeClicked;
+        switch (sender.view.tag) {
+            case 0:
+                shapeClicked = @"stars";
+                break;
+            case 1:
+                shapeClicked = @"circles";
+                break;
+            default:
+                shapeClicked = @"stars";
+                break;
+            case 2:
+                shapeClicked = @"squares";
+                break;
+            case 3:
+                shapeClicked = @"triangles";
+        }
+        NSLog(@"we poof'd a:%@",shapeClicked);
+        if (shapeClicked == _goalObject) {
+            _correctClicks = _correctClicks+1;
+            NSLog (@"correct clicks:%i",_correctClicks);
+            if (_correctClicks == [_gameTapsOfJoyModel.tapArray[_indexSelection][_goalObject] integerValue]) {
+                NSLog(@"Job's done!");
+                _gameTapsOfJoyModel.tapArray[_indexSelection][@"successful"] = @1;
+                myTableViewController *tableViewCon=[self.storyboard instantiateViewControllerWithIdentifier:@"myTableViewController"];
+                [self.navigationController pushViewController:tableViewCon animated:YES];
+
+            }
+        }
+        [sender.view removeFromSuperview];
+    }
 }
 
 /*

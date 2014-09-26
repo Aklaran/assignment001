@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "TapsOfJoyModel.h"
 
-@interface GameViewController : UIViewController
+@interface GameViewController : UIViewController <UIGestureRecognizerDelegate>
 @property (assign, nonatomic) NSInteger indexSelection;
 @property (weak, nonatomic) TapsOfJoyModel *gameTapsOfJoyModel;
-//@property (weak, nonatomic) NSDictionary *weakDictionary;
+@property (assign, nonatomic) NSInteger correctClicks;
+@property (weak, nonatomic) NSString *goalObject;
+
+-(BOOL)doesIntersectWithFrame:(CGRect)myFrame;
+
+- (void)poofImage:(UITapGestureRecognizer *)sender;
+
+-(NSArray *)updateTapArray:(BOOL)successfulBool;
 
 @end
