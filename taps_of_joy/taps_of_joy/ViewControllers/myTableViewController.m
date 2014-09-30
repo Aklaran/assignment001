@@ -31,6 +31,13 @@
     [super viewWillAppear:animated];
     self.tableView.dataSource = _myTapsOfJoyModel;
     [self.tableView reloadData];
+    UIImage *resetImage = [UIImage imageNamed:@"reset.png"];
+    UIImageView *resetImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    resetImageView.image = resetImage;
+    UIBarButtonItem *resetButton = [[UIBarButtonItem alloc]initWithCustomView:resetImageView];
+    [self.navigationController.navigationBar.topItem setRightBarButtonItem:resetButton];
+    UITapGestureRecognizer *resetTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(resetTable:)];
+    [resetImageView addGestureRecognizer:resetTap];
 }
 
 - (void)viewDidLoad
@@ -52,20 +59,6 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
 - (void)tableView:(UITableView *)tableView
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -74,6 +67,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     gameViewCon.gameTapsOfJoyModel = _myTapsOfJoyModel;
     [self.navigationController pushViewController:gameViewCon animated:YES];
     
+}
+
+- (void)resetTable:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        _myTapsOfJoyModel = [[TapsOfJoyModel alloc] init];
+        self.tableView.dataSource = _myTapsOfJoyModel;
+        [self.tableView reloadData];
+    }
 }
 
 /*

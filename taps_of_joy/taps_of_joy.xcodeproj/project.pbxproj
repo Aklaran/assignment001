@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E27572F19D9E29000CE814B /* checkmark.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1E27572E19D9E29000CE814B /* checkmark.jpeg */; };
+		1E27573119DB25C200CE814B /* x-mark-md.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E27573019DB25C200CE814B /* x-mark-md.png */; };
+		1E27573319DB283800CE814B /* reset.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E27573219DB283800CE814B /* reset.png */; };
 		1E685C0D19C8ADCC006C540E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E685C0C19C8ADCC006C540E /* Foundation.framework */; };
 		1E685C0F19C8ADCC006C540E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E685C0E19C8ADCC006C540E /* CoreGraphics.framework */; };
 		1E685C1119C8ADCC006C540E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E685C1019C8ADCC006C540E /* UIKit.framework */; };
@@ -41,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E27572E19D9E29000CE814B /* checkmark.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = checkmark.jpeg; sourceTree = "<group>"; };
+		1E27573019DB25C200CE814B /* x-mark-md.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-mark-md.png"; sourceTree = "<group>"; };
+		1E27573219DB283800CE814B /* reset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset.png; sourceTree = "<group>"; };
 		1E685C0919C8ADCC006C540E /* taps_of_joy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taps_of_joy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E685C0C19C8ADCC006C540E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1E685C0E19C8ADCC006C540E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -187,10 +193,13 @@
 		1E685C4719C8B61A006C540E /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				1E27573219DB283800CE814B /* reset.png */,
+				1E27573019DB25C200CE814B /* x-mark-md.png */,
 				1E685C5319CB475F006C540E /* stars.jpg */,
 				1E685C5419CB475F006C540E /* triangles.jpg */,
 				1E685C4819C8B61A006C540E /* circles.jpg */,
 				1E685C4919C8B61A006C540E /* squares.jpg */,
+				1E27572E19D9E29000CE814B /* checkmark.jpeg */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -272,11 +281,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E685C4D19C8B61A006C540E /* squares.jpg in Resources */,
+				1E27573319DB283800CE814B /* reset.png in Resources */,
 				1E685C5619CB475F006C540E /* triangles.jpg in Resources */,
 				1E685C2519C8ADCC006C540E /* Images.xcassets in Resources */,
+				1E27572F19D9E29000CE814B /* checkmark.jpeg in Resources */,
 				1E685C1719C8ADCC006C540E /* InfoPlist.strings in Resources */,
 				1E685C5519CB475F006C540E /* stars.jpg in Resources */,
 				1E685C2019C8ADCC006C540E /* Main.storyboard in Resources */,
+				1E27573119DB25C200CE814B /* x-mark-md.png in Resources */,
 				1E685C4C19C8B61A006C540E /* circles.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -506,6 +518,7 @@
 				1E685C3D19C8ADCC006C540E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E685C3E19C8ADCC006C540E /* Build configuration list for PBXNativeTarget "taps_of_joyTests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +527,7 @@
 				1E685C4019C8ADCC006C540E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -12,5 +12,4 @@
 @property (strong, nonatomic) NSArray *tapArray;
 @property (assign, nonatomic) NSInteger shapeRandShow;
 
-
 @end

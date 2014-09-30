@@ -116,14 +116,37 @@
             NSLog (@"correct clicks:%i",_correctClicks);
             if (_correctClicks == [_gameTapsOfJoyModel.tapArray[_indexSelection][_goalObject] integerValue]) {
                 NSLog(@"Job's done!");
-                _gameTapsOfJoyModel.tapArray[_indexSelection][@"successful"] = @1;
-                myTableViewController *tableViewCon=[self.storyboard instantiateViewControllerWithIdentifier:@"myTableViewController"];
-                [self.navigationController pushViewController:tableViewCon animated:YES];
+                _successfulBool = 1;
+                _gameTapsOfJoyModel.tapArray = [self updateTapArray:1];
+                NSLog(@"first sBool ==:%@",_gameTapsOfJoyModel.tapArray[_indexSelection][@"successful"]);
 
+//                myTableViewController *tableViewCon=[self.storyboard instantiateViewControllerWithIdentifier:@"myTableViewController"];
+//                [self.navigationController pushViewController:tableViewCon animated:YES];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             }
+        }
+        else{
+            NSLog(@"arrrrggghhh ya messed up!");
+            _successfulBool = 0;
+            _gameTapsOfJoyModel.tapArray = [self updateTapArray:0];
+            NSLog(@"first sBool ==:%@",_gameTapsOfJoyModel.tapArray[_indexSelection][@"successful"]);
+//            myTableViewController *tableViewCon=[self.storyboard instantiateViewControllerWithIdentifier:@"myTableViewController"];
+//            [self.navigationController pushViewController:tableViewCon animated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
         }
         [sender.view removeFromSuperview];
     }
+}
+
+-(NSArray *)updateTapArray:(BOOL)successfulBool;
+{
+    NSMutableArray *mutableArray = [_gameTapsOfJoyModel.tapArray mutableCopy];
+    NSMutableDictionary *mutableDictionary = [mutableArray[_indexSelection] mutableCopy];
+    mutableDictionary[@"successful"] = [[NSNumber alloc]initWithBool:successfulBool];
+    mutableDictionary[@"completed"] = @1;
+    mutableArray[_indexSelection] = mutableDictionary;
+    
+    return [[NSArray alloc]initWithArray:mutableArray];
 }
 
 /*

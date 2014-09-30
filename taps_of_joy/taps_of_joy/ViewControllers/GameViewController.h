@@ -14,6 +14,7 @@
 @property (weak, nonatomic) TapsOfJoyModel *gameTapsOfJoyModel;
 @property (assign, nonatomic) NSInteger correctClicks;
 @property (weak, nonatomic) NSString *goalObject;
+@property (assign, nonatomic) BOOL successfulBool;
 
 -(BOOL)doesIntersectWithFrame:(CGRect)myFrame;
 

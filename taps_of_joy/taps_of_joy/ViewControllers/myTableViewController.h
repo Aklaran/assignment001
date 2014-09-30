@@ -15,4 +15,5 @@
     TapsOfJoyModel *_myTapsOfJoyModel;
 }
 
+- (void)resetTable:(UITapGestureRecognizer *)sender;
 @end

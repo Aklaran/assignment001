@@ -7,6 +7,7 @@
 //
 
 #import "TapsOfJoyModel.h"
+#import "GameViewController.h"
 
 @implementation TapsOfJoyModel
 
@@ -47,8 +48,6 @@
         
     }
     return self;
-    // arc4random_uniform(10)+4 <-- look for this for randomness
-    
 }
 
 #pragma mark UITableViewDataSource
@@ -69,7 +68,23 @@
     NSString *numberValue = [[NSString alloc] initWithFormat:@"%@",_tapArray[indexPath.row][imageNumberChoice]];
     myCell.textLabel.text = numberValue;
     NSString *imageName = [[NSString alloc]initWithFormat:@"%@.jpg", _tapArray[indexPath.row][@"selection"]];
+    UIImage *checkmarkimage = [UIImage imageNamed:@"checkmark.jpeg"];
+    UIImageView *checkmarkview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    checkmarkview.image = checkmarkimage;
+    UIImage *xmarkimage = [UIImage imageNamed:@"x-mark-md.png"];
+    UIImageView *xmarkview = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    xmarkview.image = xmarkimage;
     myCell.imageView.image = [UIImage imageNamed:imageName];
+    NSLog(@"succesful?:%@",_tapArray[indexPath.row][@"successful"]);
+    if ([_tapArray[indexPath.row][@"completed"] integerValue] == 1) {
+        if ([_tapArray[indexPath.row][@"successful"] integerValue] == 1) {
+            myCell.accessoryView = checkmarkview;
+        }
+        if ([_tapArray[indexPath.row][@"successful"] integerValue] == 0){
+            myCell.accessoryView = xmarkview;
+        }
+        myCell.userInteractionEnabled = NO;
+    }
     return myCell;
 }
 
