@@ -38,6 +38,15 @@
     [self.navigationController.navigationBar.topItem setRightBarButtonItem:resetButton];
     UITapGestureRecognizer *resetTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(resetTable:)];
     [resetImageView addGestureRecognizer:resetTap];
+    self.navigationController.navigationBarHidden = NO;
+    if (_myTapsOfJoyModel.deviceBool) {
+        self.navViewController = [self.splitViewController.viewControllers lastObject];
+//        GameViewController *gameVCSplit=[self.storyboard instantiateViewControllerWithIdentifier:@"GameViewController"];
+//        gameVCSplit.indexSelection = 0;
+//        gameVCSplit.gameTapsOfJoyModel = _myTapsOfJoyModel;
+//        [self.navViewController popViewControllerAnimated:NO];
+//        [self.navViewController pushViewController:gameVCSplit animated:NO];
+    }
 }
 
 - (void)viewDidLoad
@@ -65,8 +74,18 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     GameViewController *gameViewCon=[self.storyboard instantiateViewControllerWithIdentifier:@"GameViewController"];
     gameViewCon.indexSelection = indexPath.row;
     gameViewCon.gameTapsOfJoyModel = _myTapsOfJoyModel;
-    [self.navigationController pushViewController:gameViewCon animated:YES];
-    
+    if (_myTapsOfJoyModel.deviceBool)
+    {
+        GameViewController *gameVCSplit=[self.storyboard instantiateViewControllerWithIdentifier:@"GameViewController"];
+        gameVCSplit.indexSelection = indexPath.row;
+        gameVCSplit.gameTapsOfJoyModel = _myTapsOfJoyModel;
+        [self.navViewController popViewControllerAnimated:NO];
+        [self.navViewController pushViewController:gameVCSplit animated:NO];
+        gameVCSplit.weakTV = self.tableView;
+    }
+    else {
+        [self.navigationController pushViewController:gameViewCon animated:YES];
+    }
 }
 
 - (void)resetTable:(UITapGestureRecognizer *)sender

@@ -42,7 +42,7 @@
             UIImageView *shapeView;
             CGRect imageFrame;
             do {
-                imageFrame = CGRectMake(arc4random_uniform(self.view.bounds.size.width-75), arc4random_uniform(self.view.bounds.size.height-75), 75, 75);
+                imageFrame = CGRectMake(arc4random_uniform(self.view.bounds.size.width-40), arc4random_uniform(self.view.bounds.size.height-40), 40, 40);
                 } while ( [self doesIntersectWithFrame:imageFrame]);
             shapeView = [[UIImageView alloc]initWithFrame:imageFrame];
             shapeView.tag = [localArray indexOfObject:weakKey];
@@ -53,6 +53,7 @@
             [self.view addSubview:shapeView];
         }
     }
+    self.navigationController.navigationBarHidden = YES;
 }
 
 -(BOOL)doesIntersectWithFrame:(CGRect)myFrame // = hgfhgfframe
@@ -113,7 +114,7 @@
         NSLog(@"we poof'd a:%@",shapeClicked);
         if (shapeClicked == _goalObject) {
             _correctClicks = _correctClicks+1;
-            NSLog (@"correct clicks:%i",_correctClicks);
+            NSLog (@"correct clicks:%li",(long)_correctClicks);
             if (_correctClicks == [_gameTapsOfJoyModel.tapArray[_indexSelection][_goalObject] integerValue]) {
                 NSLog(@"Job's done!");
                 _successfulBool = 1;
@@ -122,6 +123,9 @@
 
 //                myTableViewController *tableViewCon=[self.storyboard instantiateViewControllerWithIdentifier:@"myTableViewController"];
 //                [self.navigationController pushViewController:tableViewCon animated:YES];
+                if (_gameTapsOfJoyModel.deviceBool) {
+                    [self.weakTV reloadData];
+                }
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }
@@ -132,11 +136,17 @@
             NSLog(@"first sBool ==:%@",_gameTapsOfJoyModel.tapArray[_indexSelection][@"successful"]);
 //            myTableViewController *tableViewCon=[self.storyboard instantiateViewControllerWithIdentifier:@"myTableViewController"];
 //            [self.navigationController pushViewController:tableViewCon animated:YES];
+            if (_gameTapsOfJoyModel.deviceBool) {
+                [self.weakTV reloadData];
+            }
+
             [self.navigationController popToRootViewControllerAnimated:YES];
+            
+            }
         }
+
         [sender.view removeFromSuperview];
     }
-}
 
 -(NSArray *)updateTapArray:(BOOL)successfulBool;
 {

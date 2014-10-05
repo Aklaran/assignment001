@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "TapsOfJoyModel.h"
+#import "GameViewController.h"
 
 
-@interface myTableViewController : UITableViewController < UITableViewDelegate >
+@interface myTableViewController : UITableViewController < UITableViewDelegate, UISplitViewControllerDelegate >
 {
     TapsOfJoyModel *_myTapsOfJoyModel;
 }
+@property (weak, nonatomic) UINavigationController *navViewController;
 
 - (void)resetTable:(UITapGestureRecognizer *)sender;
 @end

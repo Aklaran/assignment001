@@ -36,16 +36,16 @@
                 case 3:
                     shape = @"triangles";
             }
-            [mutableTapArray addObject:@{ @"stars": [[NSNumber alloc] initWithInteger:arc4random_uniform(5)+1],
-                                          @"circles":[[NSNumber alloc] initWithInteger:arc4random_uniform(5)+1],
-                                          @"squares":[[NSNumber alloc] initWithInteger:arc4random_uniform(5)+1],
-                                          @"triangles":[[NSNumber alloc] initWithInteger:arc4random_uniform(5)+1],
+            [mutableTapArray addObject:@{ @"stars": [[NSNumber alloc] initWithInteger:arc4random_uniform(6)           +1],
+                                          @"circles":[[NSNumber alloc] initWithInteger:arc4random_uniform(6)+1],
+                                          @"squares":[[NSNumber alloc] initWithInteger:arc4random_uniform(6)+1],
+                                          @"triangles":[[NSNumber alloc] initWithInteger:arc4random_uniform(6)+1],
                                           @"completed":@0,
                                           @"successful":@0,
                                           @"selection": shape}];
         }
             _tapArray = mutableTapArray;
-        
+        _deviceBool = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
     }
     return self;
 }

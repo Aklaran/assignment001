@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="UvM-x7-axq">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="RLW-Bw-GkE">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="18F-5d-dbJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WSg-s3-f7s">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="uSC-Ah-dgX" kind="relationship" relationship="rootViewController" id="Zpf-bA-HpO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CTj-SJ-hbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-609" y="2223"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="sSW-ts-bkG">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" id="uSC-Ah-dgX" customClass="GameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CMK-83-YaW"/>
+                        <viewControllerLayoutGuide type="bottom" id="c39-dp-9bn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hja-hI-B3R">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ve3-5d-vTz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xbb-Nr-FeR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="564" y="2108"/>
+        </scene>
+        <!--My Table View Controller - Root View Controller-->
+        <scene sceneID="EjV-hA-wne">
+            <objects>
+                <tableViewController storyboardIdentifier="myTableViewController" clearsSelectionOnViewWillAppear="NO" id="nRJ-2q-F1y" customClass="myTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="goT-vJ-aQd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Fk8-ZV-JJi">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fk8-ZV-JJi" id="dBa-PN-gJd">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="nRJ-2q-F1y" id="EPK-C6-mDn"/>
+                            <outlet property="delegate" destination="nRJ-2q-F1y" id="jO1-S5-0de"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="UHQ-fr-0Ub"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XHe-aH-exD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636" y="1108"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bDP-zi-Z6D">
+            <objects>
+                <navigationController id="GtB-Xb-3PE" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="WFK-IQ-xhe">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="nRJ-2q-F1y" kind="relationship" relationship="rootViewController" id="2xx-mM-RDw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qGt-n5-crk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825" y="1092"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="f1V-xt-11A">
+            <objects>
+                <splitViewController id="UvM-x7-axq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <connections>
+                        <segue destination="GtB-Xb-3PE" kind="relationship" relationship="masterViewController" id="Txj-BB-UuB"/>
+                        <segue destination="18F-5d-dbJ" kind="relationship" relationship="detailViewController" id="Hlg-h1-7WI"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="smb-js-kW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-746" y="1012"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

@@ -11,5 +11,6 @@
 @interface TapsOfJoyModel : NSObject < UITableViewDataSource >
 @property (strong, nonatomic) NSArray *tapArray;
 @property (assign, nonatomic) NSInteger shapeRandShow;
+@property (assign, nonatomic) BOOL deviceBool;
 
 @end
